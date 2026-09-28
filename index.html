@@ -2,29 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>For Sakshi 💙</title>
+<title>Sakshi's Birthday World 💙</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-}
-
-:root{
-    --blue:#4da3ff;
-    --light:#dff2ff;
-    --cyan:#7de7ff;
-    --deep:#06142e;
-    --white:#ffffff;
+    box-sizing:border-box;
 }
 
 html{
@@ -32,800 +25,2017 @@ html{
 }
 
 body{
-    min-height:100vh;
-    font-family:"DM Sans",sans-serif;
+    background:#03142d;
     color:white;
+    font-family:"DM Sans",sans-serif;
     overflow-x:hidden;
-    background:#031027;
 }
 
-/* ================= BACKGROUND ================= */
+button{
+    font-family:inherit;
+}
 
-.bg{
+::selection{
+    background:#77dfff;
+    color:#06152d;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background{
     position:fixed;
     inset:0;
-    z-index:-10;
+    z-index:-20;
+
     background:
         linear-gradient(
-            rgba(2,10,30,.58),
-            rgba(2,10,30,.82)
+            180deg,
+            rgba(2,12,34,.42),
+            rgba(3,17,44,.72)
         ),
         url("background.jpg") center/cover no-repeat;
 }
 
-.bg::after{
+.background::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(76,180,255,.28),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 35%,
+            rgba(112,111,255,.22),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(22,113,255,.3),
+            transparent 35%
+        );
+}
+
+.background::after{
     content:"";
     position:absolute;
     inset:0;
     background:
-        radial-gradient(circle at 20% 20%,rgba(61,160,255,.25),transparent 28%),
-        radial-gradient(circle at 80% 70%,rgba(0,220,255,.16),transparent 30%);
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+    background-size:50px 50px;
+    mask-image:linear-gradient(to bottom,transparent,black,transparent);
 }
 
-/* ================= PARTICLES ================= */
+/* =========================================================
+   STAR FIELD
+========================================================= */
 
-#particles{
+#stars{
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:-1;
+    z-index:-5;
 }
 
-.particle{
+.star{
     position:absolute;
     width:3px;
     height:3px;
-    background:#bcecff;
     border-radius:50%;
-    box-shadow:0 0 10px #55cfff;
-    animation:float linear infinite;
-    opacity:.7;
+    background:white;
+    box-shadow:0 0 12px #8deaff;
+    animation:twinkle 2s infinite alternate;
 }
 
-@keyframes float{
+@keyframes twinkle{
     from{
-        transform:translateY(110vh);
-        opacity:0;
+        opacity:.15;
+        transform:scale(.6);
     }
-    15%{opacity:.8;}
-    85%{opacity:.8;}
     to{
-        transform:translateY(-10vh);
-        opacity:0;
+        opacity:1;
+        transform:scale(1.5);
     }
 }
 
-/* ================= INTRO ================= */
+/* =========================================================
+   FLOATING BUTTERFLIES
+========================================================= */
 
-#intro{
+.butterfly{
+    position:fixed;
+    font-size:24px;
+    z-index:1;
+    pointer-events:none;
+    opacity:.55;
+    animation:fly 15s linear infinite;
+}
+
+@keyframes fly{
+    0%{
+        transform:translate(-10vw,110vh) rotate(0deg);
+    }
+
+    25%{
+        transform:translate(30vw,70vh) rotate(15deg);
+    }
+
+    50%{
+        transform:translate(70vw,45vh) rotate(-10deg);
+    }
+
+    75%{
+        transform:translate(40vw,15vh) rotate(12deg);
+    }
+
+    100%{
+        transform:translate(110vw,-10vh) rotate(-10deg);
+    }
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
     position:fixed;
     inset:0;
-    z-index:100;
-    background:
-        radial-gradient(circle at center,#0b2d60 0%,#020817 65%);
+    z-index:9999;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:1s ease;
+
+    background:
+        radial-gradient(circle,#123d75,#020817 70%);
+
+    transition:1.2s;
 }
 
-.introBox{
-    width:min(650px,90%);
+.loader{
     text-align:center;
 }
 
-.system{
-    color:#72dcff;
-    font-size:12px;
-    letter-spacing:5px;
-    margin-bottom:20px;
-    animation:blink 1s infinite alternate;
+.loaderMoon{
+    width:100px;
+    height:100px;
+    margin:auto;
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle at 35% 30%,#fff,#b9f1ff 35%,#5db8ff);
+
+    box-shadow:
+        0 0 30px #75dcff,
+        0 0 100px rgba(80,170,255,.45);
+
+    animation:moonPulse 2s infinite;
 }
 
-@keyframes blink{
-    from{opacity:.4}
-    to{opacity:1}
+@keyframes moonPulse{
+    50%{
+        transform:scale(1.08);
+    }
 }
 
-.introBox h1{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(45px,9vw,90px);
-    line-height:.95;
+.loader h2{
+    font-family:"Pacifico",cursive;
+    font-size:32px;
+    margin:25px 0 10px;
+    color:#d9f8ff;
 }
 
-.introBox h1 span{
-    color:#77dfff;
-    text-shadow:0 0 35px rgba(78,210,255,.65);
+.loader p{
+    color:#8bb9d9;
+    font-size:13px;
+    letter-spacing:3px;
 }
 
-.loading{
-    margin:30px auto;
-    width:240px;
+.loaderLine{
+    width:220px;
     height:3px;
-    background:#173052;
+    margin:25px auto;
+    background:#17345b;
     overflow:hidden;
 }
 
-.loading i{
+.loaderLine span{
     display:block;
-    height:100%;
     width:0;
-    background:#6de3ff;
-    animation:load 2.2s forwards;
+    height:100%;
+    background:#76dcff;
+    animation:loading 2.5s forwards;
 }
 
-@keyframes load{
+@keyframes loading{
     to{width:100%}
 }
 
-.startBtn{
-    border:none;
-    background:linear-gradient(135deg,#5ecfff,#3587ff);
-    color:white;
-    padding:15px 28px;
-    border-radius:100px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 10px 40px rgba(50,160,255,.35);
-    transition:.3s;
-}
+/* =========================================================
+   NAV
+========================================================= */
 
-.startBtn:hover{
-    transform:translateY(-4px) scale(1.03);
-}
-
-/* ================= MAIN ================= */
-
-main{
-    opacity:0;
-    transition:1s;
-}
-
-main.show{
-    opacity:1;
-}
-
-/* ================= TOP HUD ================= */
-
-.top{
+.nav{
     position:fixed;
-    top:20px;
-    left:20px;
-    right:20px;
-    z-index:30;
+    top:22px;
+    left:50%;
+    transform:translateX(-50%);
+
+    z-index:100;
+
+    width:min(1000px,90%);
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
+    padding:12px 18px;
+
+    border:1px solid rgba(180,230,255,.18);
+    background:rgba(3,17,42,.5);
+    backdrop-filter:blur(20px);
+
+    border-radius:100px;
 }
 
-.logo{
-    font-family:Pacifico,cursive;
-    color:#bceeff;
-    font-size:21px;
-    text-shadow:0 0 20px #42cfff;
+.brand{
+    font-family:"Pacifico",cursive;
+    color:#bdeeff;
+    font-size:20px;
 }
 
-.progress{
+.navLinks{
     display:flex;
-    gap:6px;
+    gap:8px;
 }
 
-.dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#193252;
-    transition:.4s;
+.navLinks button{
+    border:none;
+    background:transparent;
+    color:#9bbbd8;
+    padding:9px 13px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.dot.active{
-    background:#71dcff;
-    box-shadow:0 0 14px #71dcff;
+.navLinks button:hover{
+    color:white;
+    background:rgba(99,202,255,.15);
 }
 
-/* ================= HERO ================= */
+@media(max-width:700px){
+
+    .navLinks{
+        display:none;
+    }
+
+    .nav{
+        justify-content:center;
+    }
+}
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+section{
+    position:relative;
+}
+
+.container{
+    width:min(1180px,90%);
+    margin:auto;
+}
+
+.smallTitle{
+    color:#82ddff;
+    text-transform:uppercase;
+    letter-spacing:5px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.bigTitle{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,7vw,80px);
+    line-height:.95;
+}
+
+.blueText{
+    color:#76ddff;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     min-height:100vh;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
-    padding:90px 20px 50px;
+    padding:120px 20px 70px;
+
+    overflow:hidden;
 }
 
-.heroInner{
-    max-width:900px;
+.heroMoon{
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff,
+            #c8f5ff 22%,
+            #65c7ff 52%,
+            #1765c5
+        );
+
+    opacity:.15;
+    filter:blur(1px);
+
+    box-shadow:
+        0 0 100px #51bfff;
+
+    animation:moonFloat 6s ease-in-out infinite;
 }
 
-.mini{
-    letter-spacing:5px;
-    text-transform:uppercase;
-    font-size:12px;
-    color:#9edfff;
-    margin-bottom:20px;
+@keyframes moonFloat{
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+.heroContent{
+    position:relative;
+    z-index:3;
+}
+
+.heroTop{
+    font-size:13px;
+    letter-spacing:7px;
+    color:#9feaff;
+    margin-bottom:30px;
 }
 
 .hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,11vw,125px);
-    line-height:.82;
-    margin-bottom:30px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(80px,15vw,190px);
+    font-weight:600;
+    line-height:.68;
+
+    text-shadow:
+        0 0 30px rgba(90,210,255,.3);
 }
 
 .hero h1 span{
     display:block;
-    color:#73dfff;
+
+    font-family:"Pacifico",cursive;
+    font-size:.48em;
+    line-height:1.5;
+
+    color:#8be8ff;
+
     text-shadow:
-        0 0 20px rgba(78,207,255,.55),
-        0 0 70px rgba(50,130,255,.35);
+        0 0 30px #43cfff;
 }
 
-.heroText{
-    max-width:600px;
-    margin:auto;
-    color:#d4eaff;
-    font-size:17px;
-    line-height:1.7;
+.heroSub{
+    max-width:650px;
+    margin:35px auto;
+
+    color:#c5e4f8;
+    line-height:1.8;
+    font-size:16px;
 }
 
-.scroll{
-    margin-top:45px;
-    color:#80cfff;
-    font-size:12px;
-    letter-spacing:3px;
-    animation:bounce 1.5s infinite;
+.enter{
+    border:none;
+    cursor:pointer;
+
+    padding:16px 30px;
+
+    color:white;
+    font-weight:700;
+
+    border-radius:100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7be6ff,
+            #3c89ff
+        );
+
+    box-shadow:
+        0 10px 40px rgba(52,160,255,.35);
+
+    transition:.3s;
+}
+
+.enter:hover{
+    transform:translateY(-5px) scale(1.04);
+    box-shadow:0 15px 60px rgba(52,190,255,.5);
+}
+
+/* =========================================================
+   RIBBON
+========================================================= */
+
+.ribbon{
+    position:absolute;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#8ec8e9;
+    font-size:11px;
+    letter-spacing:4px;
+
+    animation:bounce 1.8s infinite;
 }
 
 @keyframes bounce{
-    50%{transform:translateY(8px)}
-}
-
-/* ================= BIRTHDAY CORE ================= */
-
-.coreSection{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:80px 20px;
-}
-
-.core{
-    width:min(420px,85vw);
-    height:min(420px,85vw);
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.ring{
-    position:absolute;
-    inset:0;
-    border:1px solid rgba(116,221,255,.5);
-    border-radius:50%;
-    animation:spin 15s linear infinite;
-}
-
-.ring:nth-child(2){
-    inset:25px;
-    border-style:dashed;
-    animation:spinReverse 10s linear infinite;
-}
-
-.ring:nth-child(3){
-    inset:55px;
-    border-color:rgba(80,160,255,.25);
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg)}
-}
-
-@keyframes spinReverse{
-    to{transform:rotate(-360deg)}
-}
-
-.coreCenter{
-    width:210px;
-    height:210px;
-    border-radius:50%;
-    background:
-        radial-gradient(circle at 35% 30%,#b9f2ff,#5acfff 30%,#1762bd 70%,#071838);
-    box-shadow:
-        0 0 40px rgba(79,206,255,.45),
-        0 0 100px rgba(30,120,255,.25);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    position:relative;
-    z-index:2;
-    animation:pulse 3s infinite;
-}
-
-@keyframes pulse{
     50%{
-        transform:scale(1.04);
-        box-shadow:0 0 65px rgba(79,206,255,.6);
+        transform:translate(-50%,8px);
     }
 }
 
-.coreCenter small{
-    letter-spacing:3px;
+/* =========================================================
+   BIRTHDAY COUNTDOWN
+========================================================= */
+
+.countdownSection{
+    min-height:75vh;
+
+    display:flex;
+    align-items:center;
+
+    padding:100px 0;
 }
 
-.coreCenter strong{
-    font-family:Pacifico,cursive;
-    font-size:38px;
-    margin:5px;
+.countdownWrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
 }
 
-/* ================= CONSOLE ================= */
-
-.console{
-    padding:100px 7vw;
+@media(max-width:800px){
+    .countdownWrap{
+        grid-template-columns:1fr;
+    }
 }
 
-.sectionTitle{
-    text-align:center;
-    margin-bottom:60px;
+.countText p{
+    color:#b9d4e9;
+    line-height:1.8;
+    margin-top:20px;
 }
 
-.sectionTitle small{
-    color:#78ddff;
-    letter-spacing:4px;
-}
-
-.sectionTitle h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(35px,6vw,65px);
-    margin-top:10px;
-}
-
-/* ================= COMMAND GRID ================= */
-
-.commandGrid{
-    max-width:1100px;
-    margin:auto;
+.countBoxes{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    gap:15px;
 }
 
-.command{
-    min-height:220px;
-    position:relative;
-    padding:32px;
-    border:1px solid rgba(137,215,255,.18);
-    background:rgba(5,22,50,.6);
-    backdrop-filter:blur(14px);
-    overflow:hidden;
-    cursor:pointer;
+.timeBox{
+    min-height:150px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:30px;
+
+    border:1px solid rgba(136,222,255,.2);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(34,105,171,.28),
+            rgba(2,18,48,.65)
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(67,184,255,.04);
+
     transition:.4s;
 }
 
-.command:hover{
-    transform:translateY(-8px);
-    border-color:rgba(119,225,255,.6);
-    box-shadow:0 20px 60px rgba(0,130,255,.18);
+.timeBox:hover{
+    transform:translateY(-7px);
+    border-color:#75dfff;
 }
 
-.command::before{
+.timeBox strong{
+    font-family:"Playfair Display",serif;
+    font-size:48px;
+    color:#bcefff;
+}
+
+.timeBox span{
+    color:#75c4e9;
+    letter-spacing:3px;
+    font-size:10px;
+    margin-top:8px;
+}
+
+/* =========================================================
+   MAGIC GARDEN
+========================================================= */
+
+.garden{
+    min-height:100vh;
+    padding:120px 0;
+    overflow:hidden;
+}
+
+.gardenTop{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.gardenTop p{
+    max-width:650px;
+    margin:20px auto;
+    color:#b8d5eb;
+    line-height:1.8;
+}
+
+.flowerGarden{
+    height:500px;
+    position:relative;
+
+    border-radius:50px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(72,180,255,.15),
+            transparent 55%
+        );
+
+    border:1px solid rgba(127,218,255,.12);
+
+    overflow:hidden;
+}
+
+.moon{
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+
+    right:10%;
+    top:40px;
+
+    background:#dffaff;
+
+    box-shadow:
+        0 0 50px #86e7ff,
+        0 0 120px rgba(94,200,255,.3);
+}
+
+.flower{
+    position:absolute;
+    cursor:pointer;
+
+    font-size:55px;
+
+    filter:drop-shadow(0 0 12px rgba(97,210,255,.5));
+
+    transition:.5s;
+}
+
+.flower:hover{
+    transform:scale(1.25) rotate(8deg);
+}
+
+.flower:nth-child(2){left:8%;bottom:35px}
+.flower:nth-child(3){left:25%;bottom:80px}
+.flower:nth-child(4){left:45%;bottom:25px}
+.flower:nth-child(5){right:25%;bottom:70px}
+.flower:nth-child(6){right:8%;bottom:30px}
+
+.gardenMessage{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    width:min(500px,80%);
+
+    opacity:.85;
+}
+
+.gardenMessage h3{
+    font-family:"Pacifico",cursive;
+    color:#8eeaff;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.gardenMessage p{
+    color:#c8e4f5;
+    line-height:1.7;
+}
+
+/* =========================================================
+   GIFT SECTION
+========================================================= */
+
+.gifts{
+    padding:120px 0;
+    min-height:100vh;
+}
+
+.giftHeading{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.giftHeading p{
+    color:#abc9df;
+    margin-top:15px;
+}
+
+.giftGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+@media(max-width:850px){
+    .giftGrid{
+        grid-template-columns:1fr;
+    }
+}
+
+.gift{
+    height:350px;
+    position:relative;
+
+    perspective:1000px;
+
+    cursor:pointer;
+}
+
+.giftInner{
+    width:100%;
+    height:100%;
+    transition:transform .7s;
+    transform-style:preserve-3d;
+}
+
+.gift.open .giftInner{
+    transform:rotateY(180deg);
+}
+
+.giftFront,
+.giftBack{
+    position:absolute;
+    inset:0;
+
+    backface-visibility:hidden;
+
+    border-radius:35px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid rgba(130,220,255,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(39,117,190,.4),
+            rgba(4,24,59,.85)
+        );
+}
+
+.giftFront{
+    font-size:75px;
+}
+
+.giftFront h3{
+    font-family:"Playfair Display",serif;
+    font-size:27px;
+    margin-top:20px;
+}
+
+.giftBack{
+    transform:rotateY(180deg);
+}
+
+.giftBack h3{
+    font-family:"Pacifico",cursive;
+    color:#86e6ff;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.giftBack p{
+    color:#c7e3f5;
+    line-height:1.7;
+}
+
+/* =========================================================
+   PERSONALITY CHOOSER
+========================================================= */
+
+.vibe{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    padding:120px 0;
+}
+
+.vibeBox{
+    text-align:center;
+    width:100%;
+}
+
+.vibeOptions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:45px;
+}
+
+.vibeBtn{
+    padding:18px 28px;
+    border-radius:100px;
+
+    border:1px solid rgba(124,222,255,.3);
+
+    color:#d6f3ff;
+    background:rgba(9,45,83,.5);
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.vibeBtn:hover{
+    transform:translateY(-5px);
+    background:rgba(63,165,231,.25);
+    border-color:#77dfff;
+}
+
+.vibeResult{
+    min-height:100px;
+    max-width:700px;
+    margin:40px auto 0;
+
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
+    color:#bcefff;
+
+    opacity:0;
+    transform:translateY(15px);
+
+    transition:.5s;
+}
+
+.vibeResult.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+.cakeSection{
+    min-height:100vh;
+    padding:120px 0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.cakeBox{
+    text-align:center;
+}
+
+.cakeBox p{
+    color:#aac9df;
+    margin-top:20px;
+}
+
+.cake{
+    width:300px;
+    height:260px;
+    position:relative;
+    margin:50px auto 30px;
+}
+
+.cakeLayer{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #8ceaff,
+            #2785db
+        );
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.3);
+}
+
+.layerBottom{
+    width:280px;
+    height:90px;
+    bottom:0;
+}
+
+.layerMiddle{
+    width:230px;
+    height:80px;
+    bottom:65px;
+}
+
+.layerTop{
+    width:180px;
+    height:70px;
+    bottom:125px;
+}
+
+.icing{
+    position:absolute;
+    width:180px;
+    height:25px;
+
+    left:60px;
+    bottom:168px;
+
+    border-radius:0 0 30px 30px;
+
+    background:#ecfcff;
+}
+
+.candle{
+    position:absolute;
+
+    width:16px;
+    height:65px;
+
+    left:142px;
+    bottom:190px;
+
+    border-radius:5px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            white 0 8px,
+            #69dfff 8px 16px
+        );
+}
+
+.flame{
+    position:absolute;
+
+    width:25px;
+    height:35px;
+
+    left:-5px;
+    top:-33px;
+
+    border-radius:50% 50% 50% 10%;
+
+    transform:rotate(-45deg);
+
+    background:#cfffff;
+
+    box-shadow:
+        0 0 15px #73eaff,
+        0 0 45px #50cfff;
+
+    animation:flame 0.5s infinite alternate;
+}
+
+@keyframes flame{
+    to{
+        transform:rotate(-45deg) scale(1.15);
+    }
+}
+
+.cakeButton{
+    padding:15px 25px;
+    border:none;
+    border-radius:100px;
+    cursor:pointer;
+
+    background:#71ddff;
+    color:#062044;
+    font-weight:700;
+}
+
+.candleOff .flame{
+    display:none;
+}
+
+/* =========================================================
+   WISH JAR
+========================================================= */
+
+.wishSection{
+    min-height:80vh;
+    padding:120px 0;
+    display:flex;
+    align-items:center;
+}
+
+.jarWrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+@media(max-width:800px){
+    .jarWrap{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+}
+
+.jarText h2{
+    font-family:"Playfair Display",serif;
+    font-size:65px;
+    line-height:.9;
+}
+
+.jarText p{
+    color:#b4d1e6;
+    line-height:1.8;
+    margin:25px 0;
+}
+
+.jar{
+    width:300px;
+    height:390px;
+
+    margin:auto;
+
+    position:relative;
+
+    border-radius:60px 60px 80px 80px;
+
+    border:2px solid rgba(190,240,255,.5);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(162,232,255,.25),
+            rgba(23,101,168,.2)
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(150,235,255,.1),
+        0 20px 80px rgba(40,160,255,.2);
+
+    overflow:hidden;
+}
+
+.jar::before{
     content:"";
     position:absolute;
-    width:120px;
-    height:120px;
-    right:-40px;
-    bottom:-50px;
+
+    width:190px;
+    height:30px;
+
+    left:55px;
+    top:-13px;
+
     border-radius:50%;
-    background:#42cfff;
-    filter:blur(60px);
-    opacity:.25;
+
+    background:#bcefff;
 }
 
-.number{
-    color:#64d8ff;
-    font-size:12px;
-    letter-spacing:3px;
+.note{
+    position:absolute;
+
+    padding:9px 12px;
+
+    border-radius:8px;
+
+    background:#dffaff;
+    color:#125080;
+
+    font-size:11px;
+
+    animation:jarFloat 3s ease-in-out infinite;
 }
 
-.command h3{
+@keyframes jarFloat{
+    50%{
+        transform:translateY(-10px) rotate(3deg);
+    }
+}
+
+.jarBtn{
+    margin-top:25px;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:100px;
+
+    background:linear-gradient(135deg,#8beaff,#4e8fff);
+
+    color:white;
+
+    cursor:pointer;
+    font-weight:700;
+}
+
+/* =========================================================
+   MINI GAME
+========================================================= */
+
+.gameSection{
+    min-height:100vh;
+    padding:120px 0;
+}
+
+.game{
+    height:500px;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:45px;
+
+    border:1px solid rgba(127,220,255,.2);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(44,147,255,.18),
+            rgba(2,17,45,.7)
+        );
+}
+
+.gameHeader{
+    position:absolute;
+    top:25px;
+    left:30px;
+    right:30px;
+
+    display:flex;
+    justify-content:space-between;
+
+    z-index:3;
+}
+
+.gameHeader span{
+    color:#83ddff;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+.starCatch{
+    position:absolute;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    animation:starMove 4s linear forwards;
+
+    filter:drop-shadow(0 0 12px #6be6ff);
+}
+
+@keyframes starMove{
+    from{
+        transform:translateY(520px) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-80px) rotate(360deg);
+    }
+}
+
+.gameIntro{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    z-index:2;
+}
+
+.gameIntro h3{
     font-family:"Playfair Display",serif;
-    font-size:31px;
-    margin:25px 0 10px;
+    font-size:45px;
 }
 
-.command p{
-    color:#adc9e4;
+.gameStart{
+    margin-top:20px;
+
+    border:none;
+    padding:13px 25px;
+
+    border-radius:100px;
+
+    background:#78e3ff;
+    color:#062044;
+
+    cursor:pointer;
+    font-weight:700;
+}
+
+/* =========================================================
+   SECRET REVEAL
+========================================================= */
+
+.reveal{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:100px 20px;
+
+    overflow:hidden;
+}
+
+.revealBox{
+    position:relative;
+    z-index:3;
+}
+
+.revealBox small{
+    letter-spacing:6px;
+    color:#83e5ff;
+}
+
+.revealBox h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(70px,13vw,170px);
+
+    line-height:.7;
+
+    margin:35px 0;
+}
+
+.revealBox h2 span{
+    display:block;
+
+    font-family:"Pacifico",cursive;
+
+    font-size:.45em;
+
     line-height:1.6;
+
+    color:#7fe5ff;
+
+    text-shadow:
+        0 0 30px #49ceff,
+        0 0 80px rgba(55,147,255,.4);
 }
 
-/* ================= POPUP ================= */
+.revealBox p{
+    max-width:650px;
+    margin:auto;
+
+    color:#c7e4f4;
+
+    line-height:1.8;
+
+    font-size:17px;
+}
+
+.finalButton{
+    margin-top:35px;
+
+    padding:17px 32px;
+
+    border:none;
+
+    border-radius:100px;
+
+    background:linear-gradient(135deg,#9af0ff,#478fff);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    box-shadow:0 15px 50px rgba(55,160,255,.35);
+}
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti{
+    position:fixed;
+
+    width:8px;
+    height:14px;
+
+    top:-30px;
+
+    z-index:999;
+
+    pointer-events:none;
+
+    animation:confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* =========================================================
+   POPUP
+========================================================= */
 
 .popup{
     position:fixed;
     inset:0;
-    z-index:80;
+
+    z-index:500;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
-    background:rgba(0,5,18,.75);
-    backdrop-filter:blur(12px);
+
+    background:rgba(1,8,24,.75);
+
+    backdrop-filter:blur(15px);
 }
 
 .popup.show{
     display:flex;
 }
 
-.popupBox{
-    width:min(600px,95%);
+.popupCard{
+    width:min(620px,95%);
+
+    padding:45px;
+
+    border-radius:35px;
+
+    border:1px solid rgba(139,226,255,.3);
+
     background:
-        linear-gradient(145deg,rgba(17,51,91,.96),rgba(3,15,38,.98));
-    border:1px solid rgba(126,224,255,.35);
-    padding:40px;
-    position:relative;
+        linear-gradient(
+            145deg,
+            rgba(22,73,126,.95),
+            rgba(3,17,43,.98)
+        );
+
+    text-align:center;
+
+    animation:popup .5s ease;
+
     box-shadow:0 30px 100px rgba(0,0,0,.5);
-    animation:pop .4s ease;
 }
 
-@keyframes pop{
+@keyframes popup{
     from{
+        transform:scale(.8);
         opacity:0;
-        transform:scale(.85) translateY(20px);
     }
 }
 
-.close{
-    position:absolute;
-    top:15px;
-    right:18px;
-    background:none;
-    border:none;
-    color:white;
-    font-size:24px;
-    cursor:pointer;
-}
+.popupCard h2{
+    font-family:"Pacifico",cursive;
 
-.popupBox h2{
-    font-family:"Playfair Display",serif;
-    font-size:42px;
+    font-size:38px;
+
+    color:#94eaff;
+
     margin-bottom:20px;
 }
 
-.popupBox p{
-    color:#d2e6fa;
+.popupCard p{
+    color:#c7e4f4;
+
     line-height:1.8;
 }
 
-/* ================= MESSAGE ================= */
+.close{
+    margin-top:30px;
 
-.message{
-    font-family:"Playfair Display",serif;
-    font-size:21px;
-}
+    border:1px solid rgba(125,220,255,.3);
 
-/* ================= WISH GENERATOR ================= */
+    background:rgba(80,170,255,.1);
 
-.wish{
-    min-height:100px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-size:23px;
-    color:#ccefff;
-    margin:20px 0;
-}
-
-.blueBtn{
-    border:1px solid #62d9ff;
     color:white;
-    background:rgba(56,151,255,.15);
-    padding:12px 20px;
-    border-radius:30px;
+
+    padding:11px 22px;
+
+    border-radius:100px;
+
     cursor:pointer;
-    transition:.3s;
 }
 
-.blueBtn:hover{
-    background:#278ddd;
-}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-/* ================= COMPLIMENT RAIN ================= */
+@media(max-width:600px){
 
-#rain{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:90;
-    overflow:hidden;
-}
-
-.heart{
-    position:absolute;
-    color:#77ddff;
-    font-size:25px;
-    animation:heartFall 3s linear forwards;
-    text-shadow:0 0 15px #44cfff;
-}
-
-@keyframes heartFall{
-    from{
-        transform:translateY(-50px) rotate(0);
-        opacity:1;
-    }
-    to{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0;
-    }
-}
-
-/* ================= CAKE ================= */
-
-.cakeArea{
-    text-align:center;
-}
-
-.cake{
-    width:220px;
-    height:130px;
-    margin:35px auto 20px;
-    position:relative;
-}
-
-.layer{
-    position:absolute;
-    left:0;
-    right:0;
-    margin:auto;
-    border-radius:15px;
-    background:linear-gradient(#70d8ff,#1675cf);
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-}
-
-.layer.one{
-    width:210px;
-    height:60px;
-    bottom:0;
-}
-
-.layer.two{
-    width:170px;
-    height:55px;
-    bottom:48px;
-}
-
-.layer.three{
-    width:125px;
-    height:48px;
-    bottom:90px;
-}
-
-.icing{
-    position:absolute;
-    width:125px;
-    height:18px;
-    background:#dff8ff;
-    border-radius:0 0 30px 30px;
-    bottom:120px;
-    left:47px;
-}
-
-.candle{
-    position:absolute;
-    width:12px;
-    height:45px;
-    background:#fff;
-    left:104px;
-    bottom:135px;
-}
-
-.flame{
-    width:22px;
-    height:28px;
-    background:linear-gradient(#fff,#7ee7ff);
-    border-radius:50% 50% 50% 50%;
-    position:absolute;
-    left:-5px;
-    top:-26px;
-    box-shadow:0 0 25px #6de7ff;
-    animation:flame .5s infinite alternate;
-}
-
-@keyframes flame{
-    to{transform:scale(1.15) rotate(4deg)}
-}
-
-.cake.off .flame{
-    display:none;
-}
-
-/* ================= DONT PRESS ================= */
-
-.danger{
-    text-align:center;
-}
-
-.dont{
-    display:inline-block;
-    margin:25px auto;
-    border:none;
-    background:#0a1935;
-    color:#77dfff;
-    border:1px solid #297aa8;
-    padding:18px 30px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:700;
-    letter-spacing:2px;
-    transition:.2s;
-}
-
-.dont:hover{
-    transform:scale(1.05);
-}
-
-/* ================= FINAL ================= */
-
-.final{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:80px 20px;
-    position:relative;
-    overflow:hidden;
-}
-
-.finalInner{
-    position:relative;
-    z-index:2;
-}
-
-.final small{
-    color:#74ddff;
-    letter-spacing:5px;
-}
-
-.final h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,11vw,130px);
-    line-height:.8;
-    margin:25px 0;
-}
-
-.final h2 span{
-    color:#77dfff;
-    display:block;
-    text-shadow:0 0 50px rgba(77,215,255,.7);
-}
-
-.final p{
-    max-width:650px;
-    margin:auto;
-    color:#d4e9fa;
-    font-size:18px;
-    line-height:1.8;
-}
-
-/* ================= FIREWORKS ================= */
-
-.firework{
-    position:absolute;
-    width:5px;
-    height:5px;
-    background:#8aeaff;
-    border-radius:50%;
-    animation:boom 1.4s ease-out infinite;
-}
-
-@keyframes boom{
-    0%{
-        box-shadow:0 0 0 #7eeaff;
-        opacity:1;
-    }
-    100%{
-        box-shadow:
-        80px 0 #7eeaff,
-        -80px 0 #7eeaff,
-        0 80px #7eeaff,
-        0 -80px #7eeaff,
-        55px 55px #7eeaff,
-        -55px -55px #7eeaff,
-        55px -55px #7eeaff,
-        -55px 55px #7eeaff;
-        opacity:0;
-    }
-}
-
-.f1{top:30%;left:15%}
-.f2{top:60%;right:15%;animation-delay:.6s}
-.f3{top:20%;right:25%;animation-delay:1s}
-
-/* ================= SECRET ================= */
-
-.secret{
-    position:fixed;
-    bottom:18px;
-    right:18px;
-    z-index:40;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:1px solid rgba(120,220,255,.3);
-    background:rgba(2,15,40,.7);
-    color:#7be2ff;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.secret:hover{
-    transform:rotate(180deg);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:700px){
-
-    .commandGrid{
-        grid-template-columns:1fr;
+    .hero h1{
+        font-size:82px;
     }
 
-    .command{
-        min-height:190px;
+    .bigTitle{
+        font-size:45px;
     }
 
-    .popupBox{
-        padding:30px 22px;
+    .countBoxes{
+        grid-template-columns:1fr 1fr;
     }
 
-    .popupBox h2{
-        font-size:34px;
+    .timeBox{
+        min-height:120px;
     }
 
-    .heroText{
-        font-size:15px;
+    .timeBox strong{
+        font-size:38px;
+    }
+
+    .flowerGarden{
+        height:450px;
+    }
+
+    .jar{
+        width:260px;
+        height:350px;
+    }
+
+    .game{
+        height:450px;
     }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<div class="bg"></div>
-<div id="particles"></div>
-<div id="rain"></div>
 
-<!-- INTRO -->
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-<section id="intro">
+<div class="background"></div>
+<div id="stars"></div>
 
-    <div class="introBox">
 
-        <div class="system">
-            BIRTHDAY PROTOCOL // 29.09
+<!-- =====================================================
+     BUTTERFLIES
+===================================================== -->
+
+<div class="butterfly" style="animation-delay:-2s">🦋</div>
+<div class="butterfly" style="animation-delay:-8s">🦋</div>
+<div class="butterfly" style="animation-delay:-13s">🦋</div>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loading">
+
+    <div class="loader">
+
+        <div class="loaderMoon"></div>
+
+        <h2>Creating something for Sakshi...</h2>
+
+        <p>PLEASE WAIT FOR THE MAGIC</p>
+
+        <div class="loaderLine">
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<nav class="nav">
+
+    <div class="brand">
+        Sakshi ♡
+    </div>
+
+    <div class="navLinks">
+
+        <button onclick="go('home')">Home</button>
+        <button onclick="go('garden')">Garden</button>
+        <button onclick="go('gifts')">Gifts</button>
+        <button onclick="go('game')">Game</button>
+        <button onclick="go('final')">Surprise</button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="heroMoon"></div>
+
+    <div class="heroContent">
+
+        <div class="heroTop">
+            29 • SEPTEMBER • BIRTHDAY EDITION
         </div>
 
         <h1>
-            Loading
-            <span>Sakshi...</span>
+            Happy
+            <span>Sakshi</span>
         </h1>
 
-        <div class="loading">
-            <i></i>
+        <div class="heroSub">
+
+            Welcome to a tiny blue universe made specially
+            for one birthday girl.
+            <br>
+            There are gifts, flowers, wishes, a cake,
+            a tiny game and a few things you definitely
+            weren't supposed to find.
+
         </div>
 
-        <p style="color:#8fb7d7;margin-bottom:25px">
-            A very unnecessary but extremely important birthday experience is initializing.
+        <button class="enter" onclick="go('countdown')">
+            ✨ ENTER THE BIRTHDAY WORLD
+        </button>
+
+    </div>
+
+    <div class="ribbon">
+        SCROLL • THERE'S MORE
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COUNTDOWN / BIRTHDAY DASHBOARD
+===================================================== -->
+
+<section class="countdownSection" id="countdown">
+
+    <div class="container countdownWrap">
+
+        <div class="countText">
+
+            <div class="smallTitle">
+                Birthday dashboard
+            </div>
+
+            <h2 class="bigTitle">
+                Today belongs<br>
+                to <span class="blueText">Sakshi.</span>
+            </h2>
+
+            <p>
+                Official birthday statistics are now being calculated.
+                Current results indicate that today should contain
+                cake, smiles, pretty pictures, random laughter
+                and an unreasonable amount of fun.
+            </p>
+
+        </div>
+
+
+        <div class="countBoxes">
+
+            <div class="timeBox">
+                <strong id="days">00</strong>
+                <span>DAYS</span>
+            </div>
+
+            <div class="timeBox">
+                <strong id="hours">00</strong>
+                <span>HOURS</span>
+            </div>
+
+            <div class="timeBox">
+                <strong id="mins">00</strong>
+                <span>MINUTES</span>
+            </div>
+
+            <div class="timeBox">
+                <strong id="secs">00</strong>
+                <span>SECONDS</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAGIC GARDEN
+===================================================== -->
+
+<section class="garden" id="garden">
+
+    <div class="container">
+
+        <div class="gardenTop">
+
+            <div class="smallTitle">
+                The secret garden
+            </div>
+
+            <h2 class="bigTitle">
+                Pick a flower 🌷
+            </h2>
+
+            <p>
+                Every flower has a tiny birthday message hidden inside.
+                Don't worry, they don't bite.
+            </p>
+
+        </div>
+
+
+        <div class="flowerGarden">
+
+            <div class="moon"></div>
+
+            <div class="gardenMessage">
+
+                <h3>
+                    Make a little wish ✨
+                </h3>
+
+                <p>
+                    Click any flower around you.
+                    Something cute might happen.
+                </p>
+
+            </div>
+
+
+            <div class="flower" onclick="flower(1)">🌷</div>
+            <div class="flower" onclick="flower(2)">🌸</div>
+            <div class="flower" onclick="flower(3)">🪻</div>
+            <div class="flower" onclick="flower(4)">🌷</div>
+            <div class="flower" onclick="flower(5)">🌸</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GIFTS
+===================================================== -->
+
+<section class="gifts" id="gifts">
+
+    <div class="container">
+
+        <div class="giftHeading">
+
+            <div class="smallTitle">
+                Three mysterious presents
+            </div>
+
+            <h2 class="bigTitle">
+                Pick your gift 🎁
+            </h2>
+
+            <p>
+                Click them. Obviously.
+            </p>
+
+        </div>
+
+
+        <div class="giftGrid">
+
+
+            <div class="gift" onclick="openGift(this)">
+
+                <div class="giftInner">
+
+                    <div class="giftFront">
+
+                        🎀
+
+                        <h3>
+                            Gift No. 01
+                        </h3>
+
+                    </div>
+
+                    <div class="giftBack">
+
+                        <h3>
+                            A wish ✨
+                        </h3>
+
+                        <p>
+                            May this year bring you
+                            beautiful surprises,
+                            ridiculously good days,
+                            genuine laughter
+                            and everything that makes
+                            you smile without even trying.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gift" onclick="openGift(this)">
+
+                <div class="giftInner">
+
+                    <div class="giftFront">
+
+                        💌
+
+                        <h3>
+                            Gift No. 02
+                        </h3>
+
+                    </div>
+
+                    <div class="giftBack">
+
+                        <h3>
+                            Birthday rule 💙
+                        </h3>
+
+                        <p>
+                            For the next 24 hours,
+                            birthday girl gets unlimited
+                            cake rights,
+                            unlimited smiling rights
+                            and absolutely no boring behaviour.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gift" onclick="openGift(this)">
+
+                <div class="giftInner">
+
+                    <div class="giftFront">
+
+                        ✨
+
+                        <h3>
+                            Gift No. 03
+                        </h3>
+
+                    </div>
+
+                    <div class="giftBack">
+
+                        <h3>
+                            Final blessing 🌙
+                        </h3>
+
+                        <p>
+                            Keep being the lovely,
+                            funny and wonderfully unique
+                            person you are.
+                            The world is more fun with people
+                            like you in it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     VIBE CHOOSER
+===================================================== -->
+
+<section class="vibe">
+
+    <div class="container vibeBox">
+
+        <div class="smallTitle">
+            Birthday personality scanner
+        </div>
+
+        <h2 class="bigTitle">
+            What is Sakshi today?
+        </h2>
+
+        <div class="vibeOptions">
+
+            <button class="vibeBtn" onclick="vibe('princess')">
+                👑 Princess Mode
+            </button>
+
+            <button class="vibeBtn" onclick="vibe('chaos')">
+                🦋 Cute Chaos
+            </button>
+
+            <button class="vibeBtn" onclick="vibe('main')">
+                ✨ Main Character
+            </button>
+
+            <button class="vibeBtn" onclick="vibe('angel')">
+                🌙 Angel Energy
+            </button>
+
+        </div>
+
+        <div class="vibeResult" id="vibeResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAKE
+===================================================== -->
+
+<section class="cakeSection">
+
+    <div class="container cakeBox">
+
+        <div class="smallTitle">
+            Cake protocol
+        </div>
+
+        <h2 class="bigTitle">
+            Make a wish 🎂
+        </h2>
+
+        <div class="cake" id="cake">
+
+            <div class="cakeLayer layerBottom"></div>
+            <div class="cakeLayer layerMiddle"></div>
+            <div class="cakeLayer layerTop"></div>
+
+            <div class="icing"></div>
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+            </div>
+
+        </div>
+
+        <button class="cakeButton" onclick="blowCake()">
+            ✨ BLOW THE CANDLE
+        </button>
+
+        <p>
+            Close your eyes for a second and make a wish.
         </p>
 
-        <button class="startBtn" onclick="startSite()">
-            ENTER SAKSHI'S WORLD →
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WISH JAR
+===================================================== -->
+
+<section class="wishSection">
+
+    <div class="container jarWrap">
+
+        <div class="jarText">
+
+            <div class="smallTitle">
+                The wishing jar
+            </div>
+
+            <h2>
+                One tiny<br>
+                wish at a time.
+            </h2>
+
+            <p>
+                The jar is filled with random little wishes.
+                Shake it and see which one decides to appear.
+            </p>
+
+            <button class="jarBtn" onclick="addWish()">
+                ✨ SHAKE THE JAR
+            </button>
+
+        </div>
+
+
+        <div class="jar" id="jar">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MINI GAME
+===================================================== -->
+
+<section class="gameSection" id="game">
+
+    <div class="container">
+
+        <div style="text-align:center;margin-bottom:50px">
+
+            <div class="smallTitle">
+                Birthday mini game
+            </div>
+
+            <h2 class="bigTitle">
+                Catch the stars ⭐
+            </h2>
+
+            <p style="color:#abcbe0;margin-top:15px">
+                You have 20 seconds. Catch as many blue stars as possible.
+            </p>
+
+        </div>
+
+
+        <div class="game" id="gameBox">
+
+            <div class="gameHeader">
+
+                <span>
+                    SCORE: <b id="score">0</b>
+                </span>
+
+                <span>
+                    TIME: <b id="gameTime">20</b>
+                </span>
+
+            </div>
+
+
+            <div class="gameIntro" id="gameIntro">
+
+                <div>
+
+                    <h3>
+                        Ready, birthday girl? ✨
+                    </h3>
+
+                    <button class="gameStart" onclick="startGame()">
+                        START GAME
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="reveal" id="final">
+
+    <div class="revealBox">
+
+        <small>
+            THE FINAL SURPRISE
+        </small>
+
+        <h2>
+            Happy
+            <span>Birthday Sakshi</span>
+        </h2>
+
+        <p>
+
+            And finally...
+
+            <br><br>
+
+            I hope your birthday is filled with
+            the kind of little moments that make you
+            randomly smile later.
+
+            <br><br>
+
+            More laughter.
+            More adventures.
+            More beautiful surprises.
+            More reasons to celebrate yourself.
+
+            <br><br>
+
+            Have the most beautiful birthday ever,
+            Sakshi. 💙
+
+        </p>
+
+        <button class="finalButton" onclick="celebrate()">
+            🎆 ONE LAST SURPRISE
         </button>
 
     </div>
@@ -833,245 +2043,24 @@ main.show{
 </section>
 
 
-<main id="main">
-
-<!-- TOP -->
-
-<div class="top">
-
-    <div class="logo">Sakshi ♡</div>
-
-    <div class="progress">
-        <i class="dot"></i>
-        <i class="dot"></i>
-        <i class="dot"></i>
-        <i class="dot"></i>
-        <i class="dot"></i>
-    </div>
-
-</div>
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="heroInner">
-
-        <div class="mini">
-            today is officially about you
-        </div>
-
-        <h1>
-            Happy
-            <span>Birthday</span>
-            Sakshi.
-        </h1>
-
-        <p class="heroText">
-            Welcome to your extremely serious birthday headquarters.
-            Your only tasks today are to smile, enjoy yourself,
-            eat something good and completely ignore unnecessary stress.
-        </p>
-
-        <div class="scroll">
-            ↓ SCROLL TO UNLOCK THE CHAOS ↓
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CORE -->
-
-<section class="coreSection">
-
-    <div class="core">
-
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-
-        <div class="coreCenter">
-
-            <small>BIRTHDAY</small>
-
-            <strong>SAKSHI</strong>
-
-            <small>EDITION</small>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONSOLE -->
-
-<section class="console">
-
-    <div class="sectionTitle">
-
-        <small>WELCOME TO THE CONTROL ROOM</small>
-
-        <h2>Your birthday commands</h2>
-
-    </div>
-
-
-    <div class="commandGrid">
-
-
-        <!-- MESSAGE -->
-
-        <div class="command" onclick="openPopup('message')">
-
-            <div class="number">01 / MESSAGE DROP</div>
-
-            <h3>A little note</h3>
-
-            <p>
-                Because apparently one normal birthday wish wasn't enough.
-            </p>
-
-        </div>
-
-
-        <!-- WISH -->
-
-        <div class="command" onclick="openPopup('wish')">
-
-            <div class="number">02 / WISH GENERATOR</div>
-
-            <h3>Future predictions</h3>
-
-            <p>
-                Completely scientifically accurate predictions.
-                Probably.
-            </p>
-
-        </div>
-
-
-        <!-- MOOD -->
-
-        <div class="command" onclick="compliments()">
-
-            <div class="number">03 / MOOD BOOST</div>
-
-            <h3>Press for happiness</h3>
-
-            <p>
-                Warning: may cause random smiling and unnecessary confidence.
-            </p>
-
-        </div>
-
-
-        <!-- CAKE -->
-
-        <div class="command" onclick="openPopup('cake')">
-
-            <div class="number">04 / CAKE PROTOCOL</div>
-
-            <h3>Make a wish 🎂</h3>
-
-            <p>
-                There is a cake here. Obviously this had to exist.
-            </p>
-
-        </div>
-
-
-        <!-- DON'T PRESS -->
-
-        <div class="command" onclick="openPopup('danger')">
-
-            <div class="number">05 / CLASSIFIED</div>
-
-            <h3>Do not press</h3>
-
-            <p>
-                Seriously. There is absolutely no reason to click this.
-            </p>
-
-        </div>
-
-
-        <!-- FINAL -->
-
-        <div class="command" onclick="finalReveal()">
-
-            <div class="number">06 / FINAL ACCESS</div>
-
-            <h3>One last thing...</h3>
-
-            <p>
-                You probably thought that was everything.
-                It wasn't.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FINAL -->
-
-<section class="final" id="final">
-
-    <div class="firework f1"></div>
-    <div class="firework f2"></div>
-    <div class="firework f3"></div>
-
-    <div class="finalInner">
-
-        <small>BIRTHDAY PROTOCOL COMPLETE</small>
-
-        <h2>
-            Happy
-            <span>Birthday</span>
-            Sakshi 💙
-        </h2>
-
-        <p>
-            I hope this year brings you a ridiculous amount of happiness,
-            good people, peaceful days, unforgettable laughs and a lot of
-            reasons to smile.
-            <br><br>
-            Stay exactly as wonderfully you as you are.
-            Today is your day — so enjoy every second of it.
-        </p>
-
-        <div style="margin-top:35px;font-family:Pacifico;font-size:25px;color:#9eeaff">
-            Have the prettiest day ever ✨
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- SECRET BUTTON -->
-
-<button class="secret" onclick="secretMessage()">✦</button>
-
-
-<!-- POPUP -->
+<!-- =====================================================
+     POPUP
+===================================================== -->
 
 <div class="popup" id="popup">
 
-    <div class="popupBox">
+    <div class="popupCard">
 
-        <button class="close" onclick="closePopup()">×</button>
+        <h2 id="popupTitle">
+            ✨
+        </h2>
 
-        <div id="popupContent"></div>
+        <p id="popupText">
+        </p>
+
+        <button class="close" onclick="closePopup()">
+            Close ♡
+        </button>
 
     </div>
 
@@ -1080,483 +2069,535 @@ main.show{
 
 <script>
 
-/* ================= PARTICLES ================= */
+/* =========================================================
+   STARS
+========================================================= */
 
-const particleBox = document.getElementById("particles");
+const stars=document.getElementById("stars");
 
-for(let i=0;i<70;i++){
+for(let i=0;i<130;i++){
 
-    const p=document.createElement("div");
+    const star=document.createElement("div");
 
-    p.className="particle";
+    star.className="star";
 
-    p.style.left=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*100+"%";
 
-    p.style.animationDuration=(5+Math.random()*10)+"s";
+    const size=Math.random()*3+1;
 
-    p.style.animationDelay=(-Math.random()*10)+"s";
+    star.style.width=size+"px";
+    star.style.height=size+"px";
 
-    p.style.opacity=Math.random();
+    star.style.animationDelay=
+        Math.random()*3+"s";
 
-    particleBox.appendChild(p);
-
+    stars.appendChild(star);
 }
 
 
-/* ================= START ================= */
+/* =========================================================
+   LOADING
+========================================================= */
 
-function startSite(){
-
-    document.getElementById("intro").style.opacity="0";
+window.addEventListener("load",()=>{
 
     setTimeout(()=>{
 
-        document.getElementById("intro").style.display="none";
+        const loading=document.getElementById("loading");
 
-        document.getElementById("main").classList.add("show");
+        loading.style.opacity="0";
 
-    },900);
+        setTimeout(()=>{
+            loading.style.display="none";
+        },1200);
+
+    },2800);
+
+});
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(id){
+
+    document.getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth"
+        });
 
 }
 
 
-/* ================= POPUP ================= */
+/* =========================================================
+   COUNTDOWN
+========================================================= */
 
-function openPopup(type){
+function countdown(){
 
-    const popup=document.getElementById("popup");
+    const target=
+        new Date("September 29, 2026 00:00:00").getTime();
 
-    const content=document.getElementById("popupContent");
+    const now=new Date().getTime();
 
-    popup.classList.add("show");
+    let difference=target-now;
 
-    if(type==="message"){
+    if(difference<0){
 
-        content.innerHTML=`
-
-        <h2>For Sakshi 💙</h2>
-
-        <p class="message">
-
-        Happy Birthdayyy Sakshi!! 🥳💙
-
-        <br><br>
-
-        I hope today gives you the kind of happiness that stays
-        even after the birthday decorations disappear.
-
-        <br><br>
-
-        May this year bring you more laughs,
-        more good days, less unnecessary stress,
-        and a LOT of moments where you randomly think
-        "okay life is actually pretty nice."
-
-        <br><br>
-
-        Enjoy your day properly.
-        No overthinking.
-        No boring behaviour.
-        Birthday rules.
-
-        <br><br>
-
-        Have an absolutely amazing birthday ✨
-
-        </p>
-
-        `;
+        difference=
+            0;
 
     }
 
+    const days=
+        Math.floor(
+            difference/(1000*60*60*24)
+        );
 
-    if(type==="wish"){
+    const hours=
+        Math.floor(
+            (difference/(1000*60*60))%24
+        );
 
-        content.innerHTML=`
+    const mins=
+        Math.floor(
+            (difference/(1000*60))%60
+        );
 
-        <h2>Birthday Generator ✨</h2>
+    const secs=
+        Math.floor(
+            (difference/1000)%60
+        );
 
-        <div class="wish" id="wishText">
+    document.getElementById("days")
+        .innerText=String(days).padStart(2,"0");
 
-        Click the button and discover your extremely accurate future.
+    document.getElementById("hours")
+        .innerText=String(hours).padStart(2,"0");
 
-        </div>
+    document.getElementById("mins")
+        .innerText=String(mins).padStart(2,"0");
 
-        <div style="text-align:center">
-
-        <button class="blueBtn" onclick="generateWish()">
-        GENERATE MY FUTURE
-        </button>
-
-        </div>
-
-        `;
-
-    }
-
-
-    if(type==="cake"){
-
-        content.innerHTML=`
-
-        <h2>Birthday Cake 🎂</h2>
-
-        <div class="cakeArea">
-
-            <div class="cake" id="cake">
-
-                <div class="layer one"></div>
-                <div class="layer two"></div>
-                <div class="layer three"></div>
-
-                <div class="icing"></div>
-
-                <div class="candle">
-                    <div class="flame"></div>
-                </div>
-
-            </div>
-
-            <p>
-                Make a wish and blow out the candle.
-                Okay fine... clicking works too 😭
-            </p>
-
-            <br>
-
-            <button class="blueBtn" onclick="blowCandle()">
-                BLOW THE CANDLE ✨
-            </button>
-
-        </div>
-
-        `;
-
-    }
-
-
-    if(type==="danger"){
-
-        content.innerHTML=`
-
-        <div class="danger">
-
-            <h2>⚠ CLASSIFIED ⚠</h2>
-
-            <p>
-            You were specifically told not to press this.
-            <br><br>
-            And yet here we are.
-            </p>
-
-            <button class="dont" onclick="chaos()">
-            DEFINITELY DON'T PRESS
-            </button>
-
-            <p id="chaosText"></p>
-
-        </div>
-
-        `;
-
-    }
+    document.getElementById("secs")
+        .innerText=String(secs).padStart(2,"0");
 
 }
 
-
-/* ================= CLOSE ================= */
-
-function closePopup(){
-
-    document.getElementById("popup").classList.remove("show");
-
-}
+countdown();
+setInterval(countdown,1000);
 
 
-/* ================= WISHES ================= */
+/* =========================================================
+   FLOWERS
+========================================================= */
 
-const wishes=[
+const flowerMessages=[
 
-"Prediction: You will laugh at something completely stupid very soon.",
+    "🌷 Sakshi, may this year bloom beautifully for you.",
 
-"Prediction: Someone is definitely going to annoy you today. Birthday privilege: ignore them.",
+    "🌸 A little flower says: you deserve a ridiculously happy birthday.",
 
-"Prediction: Cake will somehow solve at least 43% of today's problems.",
+    "🪻 Today's forecast: 100% chance of smiles.",
 
-"Prediction: A random good moment will happen when you least expect it.",
+    "🌷 Birthday flower delivery: one giant bouquet of happiness.",
 
-"Prediction: This year contains an unreasonable amount of good memories waiting for you.",
-
-"Prediction: You are legally required to enjoy your birthday.",
-
-"Prediction: Something you've been waiting for will eventually work out.",
-
-"Prediction: You will receive at least one extremely cute birthday message.",
-
-"Prediction: Your happiness levels are expected to increase dramatically today.",
-
-"Prediction: Future Sakshi is going to be very proud of present Sakshi."
+    "🌸 Secret garden says: keep shining exactly like this."
 
 ];
 
-function generateWish(){
+function flower(number){
 
-    const text=document.getElementById("wishText");
+    showPopup(
+        "A little flower message 🌷",
+        flowerMessages[number-1]
+    );
 
-    const random=wishes[Math.floor(Math.random()*wishes.length)];
+    confetti(15);
+}
 
-    text.style.opacity="0";
+
+/* =========================================================
+   GIFTS
+========================================================= */
+
+function openGift(element){
+
+    element.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   VIBE
+========================================================= */
+
+function vibe(type){
+
+    const result=document.getElementById("vibeResult");
+
+    const messages={
+
+        princess:
+        "👑 Princess Mode activated. The birthday girl has entered her royal era.",
+
+        chaos:
+        "🦋 Cute Chaos detected. Nobody knows what happens next, including Sakshi.",
+
+        main:
+        "✨ Main Character Energy: 100%. Camera somehow always finds you.",
+
+        angel:
+        "🌙 Angel Energy detected. Soft skies, pretty lights and birthday magic."
+
+    };
+
+    result.innerText=messages[type];
+
+    result.classList.remove("show");
 
     setTimeout(()=>{
-
-        text.innerText=random;
-
-        text.style.opacity="1";
-
-    },200);
+        result.classList.add("show");
+    },50);
 
 }
 
 
-/* ================= COMPLIMENT RAIN ================= */
+/* =========================================================
+   CAKE
+========================================================= */
 
-function compliments(){
-
-    const messages=[
-
-        "pretty ✨",
-        "iconic 💙",
-        "birthday queen 👑",
-        "stay amazing ✨",
-        "main character energy",
-        "certified cool",
-        "10/10 human",
-        "too awesome",
-        "keep smiling 💙",
-        "absolute star ⭐"
-
-    ];
-
-    for(let i=0;i<25;i++){
-
-        const h=document.createElement("div");
-
-        h.className="heart";
-
-        h.innerText=messages[Math.floor(Math.random()*messages.length)];
-
-        h.style.left=Math.random()*95+"%";
-
-        h.style.fontSize=(12+Math.random()*14)+"px";
-
-        h.style.animationDuration=(2+Math.random()*2)+"s";
-
-        document.getElementById("rain").appendChild(h);
-
-        setTimeout(()=>h.remove(),4000);
-
-    }
-
-}
-
-
-/* ================= CAKE ================= */
-
-function blowCandle(){
+function blowCake(){
 
     const cake=document.getElementById("cake");
 
-    cake.classList.add("off");
+    cake.classList.add("candleOff");
+
+    confetti(80);
 
     setTimeout(()=>{
 
-        alert("✨ Wish successfully sent to the universe ✨");
+        showPopup(
+            "Wish sent ✨",
+            "Your birthday wish has officially been launched into the universe. May it find its way back to you in the prettiest possible form. 💙"
+        );
 
-    },400);
+    },500);
 
 }
 
 
-/* ================= CHAOS ================= */
+/* =========================================================
+   WISH JAR
+========================================================= */
 
-function chaos(){
+const jarWishes=[
 
-    const text=document.getElementById("chaosText");
+    "May you have a day that feels like your favourite song. 🎶",
 
-    text.innerHTML="";
+    "May something unexpectedly wonderful happen today. ✨",
 
-    const lines=[
+    "May this year be full of places worth remembering. 🌙",
 
-        "You really pressed it 😭",
+    "May your happiest laugh happen a little more often. 💙",
 
-        "Okay wow.",
+    "May every birthday after this one somehow become even better. 🎀",
 
-        "That was definitely unnecessary.",
+    "May you always have a reason to celebrate yourself. 🌷",
 
-        "Sakshi has unlocked: CHAOS MODE.",
+    "May good surprises find you when you least expect them. ✨",
 
-        "Birthday security has officially given up.",
+    "May this year be ridiculously kind to you. 🦋"
 
-        "Fine. Have some confetti 💙"
+];
 
-    ];
+function addWish(){
 
-    let i=0;
+    const jar=document.getElementById("jar");
 
-    const interval=setInterval(()=>{
+    const note=document.createElement("div");
 
-        text.innerHTML+=
-        `<br><span style="color:#78ddff">${lines[i]}</span>`;
+    note.className="note";
 
-        i++;
+    note.innerText=
+        jarWishes[
+            Math.floor(
+                Math.random()*jarWishes.length
+            )
+        ];
 
-        if(i>=lines.length){
+    note.style.left=
+        20+Math.random()*60+"%";
 
-            clearInterval(interval);
+    note.style.top=
+        40+Math.random()*45+"%";
 
-            compliments();
+    note.style.transform=
+        `rotate(${Math.random()*20-10}deg)`;
 
-        }
+    jar.appendChild(note);
 
-    },450);
+    showPopup(
+        "The jar chose... 💌",
+        note.innerText
+    );
 
 }
 
 
-/* ================= FINAL ================= */
+/* =========================================================
+   GAME
+========================================================= */
 
-function finalReveal(){
+let score=0;
+let gameRunning=false;
+let gameTimer;
 
-    closePopup();
+function startGame(){
 
-    document.getElementById("final").scrollIntoView({
+    if(gameRunning) return;
 
-        behavior:"smooth"
+    score=0;
 
-    });
+    document.getElementById("score")
+        .innerText=score;
 
-    setTimeout(()=>{
+    document.getElementById("gameIntro")
+        .style.display="none";
 
-        compliments();
+    gameRunning=true;
 
-        for(let i=0;i<3;i++){
+    let time=20;
 
-            setTimeout(()=>compliments(),700*i);
+    document.getElementById("gameTime")
+        .innerText=time;
+
+    gameTimer=setInterval(()=>{
+
+        time--;
+
+        document.getElementById("gameTime")
+            .innerText=time;
+
+        if(time<=0){
+
+            clearInterval(gameTimer);
+
+            gameRunning=false;
+
+            showPopup(
+                "Game Over ⭐",
+                "You caught "+score+" stars! Not bad, birthday girl. ✨"
+            );
+
+            document.getElementById("gameIntro")
+                .style.display="flex";
 
         }
 
     },1000);
 
+    spawnStar();
+
 }
 
 
-/* ================= SECRET ================= */
+function spawnStar(){
 
-function secretMessage(){
+    if(!gameRunning) return;
 
-    const messages=[
+    const game=document.getElementById("gameBox");
 
-        "You found the secret button 👀",
+    const star=document.createElement("div");
 
-        "Okay detective, impressive.",
+    star.className="starCatch";
 
-        "There was literally no reason for this button to exist.",
+    star.innerText="⭐";
 
-        "But since you found it... HAPPY BIRTHDAY AGAIN 💙",
+    star.style.left=
+        Math.random()*90+"%";
 
-        "Now go enjoy your day instead of pressing random buttons 😭"
+    star.style.animationDuration=
+        (2+Math.random()*2)+"s";
 
+    star.onclick=()=>{
+
+        score++;
+
+        document.getElementById("score")
+            .innerText=score;
+
+        star.remove();
+
+        spawnStar();
+
+    };
+
+    game.appendChild(star);
+
+    setTimeout(()=>{
+
+        if(star.parentNode){
+
+            star.remove();
+
+        }
+
+        if(gameRunning){
+
+            spawnStar();
+
+        }
+
+    },4000);
+
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+function showPopup(title,text){
+
+    document.getElementById("popupTitle")
+        .innerText=title;
+
+    document.getElementById("popupText")
+        .innerText=text;
+
+    document.getElementById("popup")
+        .classList.add("show");
+
+}
+
+function closePopup(){
+
+    document.getElementById("popup")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function confetti(amount=60){
+
+    const symbols=[
+        "✦",
+        "✧",
+        "◆",
+        "●",
+        "★"
     ];
 
-    const msg=messages[Math.floor(Math.random()*messages.length)];
+    for(let i=0;i<amount;i++){
 
-    alert(msg);
+        const piece=document.createElement("div");
 
-    compliments();
+        piece.className="confetti";
+
+        piece.innerText=
+            symbols[
+                Math.floor(
+                    Math.random()*symbols.length
+                )
+            ];
+
+        piece.style.left=
+            Math.random()*100+"vw";
+
+        piece.style.color=
+            [
+                "#8deaff",
+                "#ffffff",
+                "#5ba7ff",
+                "#b5f2ff",
+                "#77dfff"
+            ][
+                Math.floor(Math.random()*5)
+            ];
+
+        piece.style.animationDuration=
+            (2+Math.random()*3)+"s";
+
+        piece.style.animationDelay=
+            Math.random()*.7+"s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },5000);
+
+    }
 
 }
 
 
-/* ================= SCROLL PROGRESS ================= */
+/* =========================================================
+   FINAL CELEBRATION
+========================================================= */
 
-window.addEventListener("scroll",()=>{
+function celebrate(){
 
-    const scroll=window.scrollY;
+    confetti(250);
 
-    const height=document.body.scrollHeight-window.innerHeight;
+    setTimeout(()=>{
+        confetti(150);
+    },1000);
 
-    const percent=scroll/height;
+    setTimeout(()=>{
+        confetti(150);
+    },2000);
 
-    const dots=document.querySelectorAll(".dot");
-
-    const index=Math.min(
-        dots.length-1,
-        Math.floor(percent*dots.length)
+    showPopup(
+        "🎆 SURPRISE COMPLETE 🎆",
+        "Happy Birthday once again, Sakshi! 💙 May your entire year be as bright, pretty and fun as this little birthday universe."
     );
 
-    dots.forEach((dot,i)=>{
+}
 
-        dot.classList.toggle("active",i<=index);
 
-    });
+/* =========================================================
+   MOUSE GLOW
+========================================================= */
+
+document.addEventListener("mousemove",(e)=>{
+
+    const x=e.clientX;
+    const y=e.clientY;
+
+    document.body.style.setProperty(
+        "--mouseX",
+        x+"px"
+    );
+
+    document.body.style.setProperty(
+        "--mouseY",
+        y+"px"
+    );
 
 });
 
 
-/* ================= CLICK SPARK ================= */
+/* =========================================================
+   ESC TO CLOSE
+========================================================= */
 
-document.addEventListener("click",(e)=>{
+document.addEventListener("keydown",(e)=>{
 
-    for(let i=0;i<4;i++){
+    if(e.key==="Escape"){
 
-        const spark=document.createElement("span");
-
-        spark.style.position="fixed";
-
-        spark.style.left=e.clientX+"px";
-
-        spark.style.top=e.clientY+"px";
-
-        spark.style.width="5px";
-
-        spark.style.height="5px";
-
-        spark.style.borderRadius="50%";
-
-        spark.style.background="#8eeaff";
-
-        spark.style.pointerEvents="none";
-
-        spark.style.zIndex="999";
-
-        document.body.appendChild(spark);
-
-        const x=(Math.random()-.5)*80;
-
-        const y=(Math.random()-.5)*80;
-
-        spark.animate([
-
-            {
-                transform:"translate(0,0)",
-                opacity:1
-            },
-
-            {
-                transform:`translate(${x}px,${y}px)`,
-                opacity:0
-            }
-
-        ],{
-
-            duration:600,
-            easing:"ease-out"
-
-        }).onfinish=()=>spark.remove();
+        closePopup();
 
     }
 
 });
+
 
 </script>
 
